@@ -1,0 +1,39 @@
+/**
+ * @external @elgato-stream-deck/node
+ * @see {@link https://www.npmjs.com/package/@elgato-stream-deck/node}
+ */
+
+/**
+ * @external @julusian/jpeg-turbo
+ * @see {@link https://www.npmjs.com/package/@julusian/jpeg-turbo}
+ */
+
+/**
+ * @external array-keyed-map
+ * @see {@link https://www.npmjs.com/package/array-keyed-map}
+ */
+
+/**
+ * @external colornames
+ * @see {@link https://www.npmjs.com/package/colornames}
+ */
+
+/**
+ * @external eventemitter3
+ * @see {@link https://www.npmjs.com/package/eventemitter3}
+ */
+
+/**
+ * @external hex-and-rgba
+ * @see {@link https://www.npmjs.com/package/hex-and-rgba}
+ */
+
+/**
+ * @external queue
+ * @see {@link https://www.npmjs.com/package/queue}
+ */
+
+/**
+ * @external sharp
+ * @see {@link https://www.npmjs.com/package/sharp}
+ */
