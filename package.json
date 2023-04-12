@@ -1,6 +1,6 @@
 {
   "name": "streamdeck-ui-node",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An npm module for creating and managing user interface elements on an Elgato Stream Deck with NodeJS",
   "main": "lib/index.js",
   "author": "MrFigg",
