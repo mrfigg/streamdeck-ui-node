@@ -1,0 +1,106 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        type: choice
+        description: Release type
+        required: true
+        options:
+        - patch
+        - minor
+        - major
+
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Read current version
+        id: read_version
+        uses: jaywcjlove/github-action-package@v1.3.1
+
+      # TODO: find replacement for WyriHaximus/github-action-next-semvers@v1.0 that does not use the `set-output` command
+      - name: Parse possible next versions
+        id: parse_version
+        uses: WyriHaximus/github-action-next-semvers@v1.0
+        with:
+          version: ${{ steps.read_version.outputs.version }}
+          strict: true
+
+      - name: Set next version
+        id: set_version
+        run: echo "version=${{ steps.parse_version.outputs[inputs.type] }}" >> "$GITHUB_OUTPUT"
+
+      - name: Generate changelog
+        id: generate_changelog
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          toTag: v${{ steps.read_version.outputs.version }}
+          fromTag: ${{ github.ref }}
+          #includeInvalidCommits: true
+          writeToFile: false
+          excludeTypes: chore,ignore,build,other,style
+
+      - name: Update package
+        id: update_version
+        uses: jaywcjlove/github-action-package@v1.3.1
+        with:
+          version: ${{ steps.set_version.outputs.version }}
+      
+      - name: Update changelog
+        id: update_changelog
+        uses: stefanzweifel/changelog-updater-action@v1.6.2
+        with:
+          latest-version: v${{ steps.set_version.outputs.version }}
+          release-notes: ${{ steps.generate_changelog.outputs.changes }}
+
+      # TODO: find replacement for test-room-7/action-update-file@v1.6.0 that does not use the `set-output` command
+      - name: Commit package and changelog
+        id: commit_changes
+        uses: test-room-7/action-update-file@v1.6.0
+        with:
+          file-path: |
+            package.json
+            CHANGELOG.md
+          commit-msg: "chore(Release): v${{ steps.set_version.outputs.version }}"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          committer-name: mrfigg
+          committer-email: 36649520+mrfigg@users.noreply.github.com
+
+      - name: Create tag
+        id: create_tag
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ steps.set_version.outputs.version }}
+          tag_prefix: v
+
+      - name: Create GitHub release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          tag: ${{ steps.create_tag.outputs.new_tag }}
+          name: Release ${{ steps.create_tag.outputs.new_tag }}
+          body: ${{ steps.generate_changelog.outputs.changes }}
+
+      - name: Create NPM release
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
