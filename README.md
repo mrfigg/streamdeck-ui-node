@@ -1,6 +1,6 @@
 # streamdeck-ui-node
 
-![npm license](https://img.shields.io/npm/l/streamdeck-ui-node) ![npm downloads](https://img.shields.io/npm/dw/streamdeck-ui-node) ![npm version](https://img.shields.io/npm/v/streamdeck-ui-node) ![npm bundle size](https://img.shields.io/bundlephobia/min/streamdeck-ui-node) [![github issues](https://img.shields.io/github/issues/mrfigg/streamdeck-ui-node)](https://github.com/mrfigg/streamdeck-ui-node/issues) ![snyk vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/streamdeck-ui-node) ![gitHub last commit](https://img.shields.io/github/last-commit/mrfigg/streamdeck-ui-node)
+[![npm license](https://img.shields.io/npm/l/streamdeck-ui-node)](https://www.npmjs.com/package/streamdeck-ui-node) [![npm downloads](https://img.shields.io/npm/dw/streamdeck-ui-node)](https://www.npmjs.com/package/streamdeck-ui-node) [![npm version](https://img.shields.io/npm/v/streamdeck-ui-node)](https://www.npmjs.com/package/streamdeck-ui-node) [![github issues](https://img.shields.io/github/issues/mrfigg/streamdeck-ui-node)](https://github.com/mrfigg/streamdeck-ui-node/issues) [![snyk vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/streamdeck-ui-node)](https://security.snyk.io/vuln/?search=streamdeck-ui-node) [![github last commit](https://img.shields.io/github/last-commit/mrfigg/streamdeck-ui-node)](https://github.com/mrfigg/streamdeck-ui-node)
 
 Easily create and manage user interface elements on an [Elgato Stream Deck](https://www.elgato.com/gaming/stream-deck) with NodeJS.
 
