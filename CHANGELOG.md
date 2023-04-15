@@ -1,0 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## 0.1.1 (2023-04-12)
+
+### :bug: Bug Fixes
+- [f1b76f9](https://github.com/mrfigg/streamdeck-ui-node/commit/f1b76f9a6fb75ec530ddc7bfaa8c896e54290ab3) - HID_PATH & SERIAL_NUMBER were undefined  *(commit by @mrfigg)*
+
+## 0.1.0 (2023-04-10)
+
+### :sparkles: New Features
+
+- [18a384b](https://github.com/mrfigg/streamdeck-ui-node/commit/18a384b7c43a5a409ed58021462e7ef89847cfa0) - Initial release *(commit by @mrfigg)*
